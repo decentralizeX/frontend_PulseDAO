@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+  sleep(2750).then(() => {
+	  var duration = 11 * 1000;
+var animationEnd = Date.now() + duration;
+var defaults = { startVelocity: 17, spread: 360, ticks: 60, zIndex: 0 };
+
+function randomInRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+var interval = setInterval(function() {
+  var timeLeft = animationEnd - Date.now();
+
+  if (timeLeft <= 0) {
+    return clearInterval(interval);
+  }
+
+  var particleCount = 50 * (timeLeft / duration);
+  // since particles fall down, start a bit higher than random
+  confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+  confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+}, 250);
+
+sleep(5942).then(() => {  
+
+					Swal.fire({
+						  title: '<strong>Welcome to the PulseDAO!</strong>',
+						  html: 'PulseDAO is like HEX on steroids, creating a DAO(Decentralized Autonomous Organization) for the PulseChain network.</br></br><strong>PulseDAO Goals:</strong></br>1.) Create a scarce digital asset (\"Digital diamond\")</br>2.) Fair distribution to PulseChain community</br>3.) Provide Governance Framework for PulseChain Community</br></br><strong>Why is this needed?</strong></br> PulseDAO effectively creates a community-owned governance framework that can be used to support PUBLIC GOODS for the PulseChain network.</br></br> </br><h3>Disclaimer & Associated Risks</strong></h3> PulseDAO (XPD) is a utility token utilized for securing and governing a decentralized autonomous protocol. It is important to note that PulseDAO (XPD) is not an investment, and you should not anticipate any financial returns. There is no assurance of future token value, and it is crucial to understand that token prices can exhibit significant volatility, potentially resulting in a total loss of value. Please refrain from investing funds that you cannot afford to lose.',
+						  focusConfirm: false,
+						  confirmButtonText:
+							'<i class=\"fa fa-thumbs-up\"></i> Enter'
+						})
+				})  
+  })
+
+						
+						  function sleep(milliseconds) {  
+      return new Promise(resolve => setTimeout(resolve, milliseconds));  
+   }  
+</script>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>PulseDAO: Governance Portal</title>
+  <!-- base:css -->
+  <link rel="stylesheet" href="siteFiles/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="siteFiles/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <link rel="stylesheet" href="siteFiles/vendors/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="siteFiles/vendors/flag-icon-css/css/flag-icon.min.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="siteFiles/css/vertical-layout-dark/style.css">
+  <!-- endinject -->
+  <link rel="stylesheet" href="siteFiles/vendors/font-awesome/css/font-awesome.min.css"/>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script src="js/ethers.js"></script>
+ <script src="https://unpkg.com/@metamask/detect-provider/dist/detect-provider.min.js"></script> 
+ <script type="text/javascript" src="https://unpkg.com/web3@1.6.0/dist/web3.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/web3modal@1.9.4/dist/index.js"></script>
+<script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.6.6/dist/umd/index.min.js"></script>
+<script type="text/javascript" src="js/walletlink.bundle.js"></script>
+ <script src="1config.js"></script> 
+
+<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
+  <style>
+.customloader {
+  border: 7px solid #f3f3f3; /* Light grey */
+  border-top: 7px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+  animation: spin 2s linear infinite;
+  display: inline-block;
+}
+
+.customloader2 {
+  border: 25px solid #f3f3f3; /* Light grey */
+  border-top: 25px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  animation: spin 2s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+</style>
+  <style>.web3modal-modal-lightbox { z-index: 9999 !important; }</style></head>
+<body>
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center">
+        <a class="navbar-brand brand-logo" href="index.html"><img src="img/dtx-logo.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="favicon/favicon-32x32.png" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="mdi mdi-menu"></span>
+        </button>
+
+        <ul class="navbar-nav navbar-nav-right">
+      
+          
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link" href="#" id="userSettings">
+              <img src="img/profile.png" style="display: block;border-radius: 35px;border: 1px solid #9739C2;" alt="profile"/>
+            </a>
+          </li>
+          <li class="nav-item nav-settings d-none d-lg-flex">
+            <a class="nav-link" href="#">
+              <i class="mdi mdi-dots-horizontal"></i>
+            </a>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+        <div id="right-sidebar" class="settings-panel">
+        <i class="settings-close mdi mdi-close"></i>
+  
+        <div class="tab-content" id="setting-content">
+          <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel" aria-labelledby="todo-section">
+      
+            
+            <div class="events py-4 border-bottom px-3">
+          
+          <a href="https://t.me/pulseDAO" target="_blank"><img src="img/telegram2.svg" width="33px"></a> Telegram
+            </div>
+            <div class="events py-4 border-bottom px-3">
+             
+               <a href="https://twitter.com/pulseXPD" target="_blank"><img src="img/twitter.svg" height="50px"></a> 
+            </div>
+			
+          </div>
+          <!-- To do section tab ends -->
+        
+          <!-- chat tab ends -->
+        </div>
+      </div>
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+	  
+
+     <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+		<div style="display: inline;">
+			<li class="nav-item">
+    
+        
+              <span class="menu-title"><center> <img src="img/pulsechain.png" style="max-height: 18px;"></center></span>
+            
+          </li>
+	
+		  <li class="nav-item">
+            <a class="nav-link" href="#" onclick="addToMetamask();">
+              
+              <span class="menu-title" style="display: block;
+  margin-left: auto;
+  margin-right: auto;"><img src="favicon/favicon-32x32.png" width="20px" height="20px"> XPD: <font color="green">$</font><small><div id="DTX-price" style="display:inline;"></div></small></span>
+            </a>
+          </li>
+
+		
+		  </div>
+		  
+		    		  		  <li class="nav-item">
+            <a class="nav-link" href="https://pulsedao.pro/FAQ.php" target="_blank">
+             <i class="mdi mdi-book-open-page-variant menu-icon"></i>
+              <span class="menu-title">FAQ & Whitepaper</span>
+            </a>
+          </li>
+		    <li class="nav-item">
+		  	<a class="nav-link" href="#" onclick="showAudit();">
+              <i class="mdi mdi-shield  menu-icon"></i>
+              <span class="menu-title">Security Audits</span>
+            </a> </li>
+		  
+		  
+		  <li class="nav-item">
+            <a class="nav-link" href="claim.html">
+             <i class="mdi mdi-swap-horizontal menu-icon"></i>
+              <span class="menu-title">Claim Tokens <small>(Contributors)</small></span>
+            </a>
+          </li>
+
+
+
+		  
+		  		  
+		    <li class="nav-item">
+            <a class="nav-link collapsed show" href="#stakingPlatform">
+          <i class="mdi mdi-biohazard menu-icon"></i>
+              <span class="menu-title">Mining Platform</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div id="miningPlatform">
+              <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="create-CD.html">Create new CD</a></li>
+				  <li class="nav-item"> <a class="nav-link" href="view-all-CD.html">View All CDs</a></li>
+				   <li class="nav-item"> <a class="nav-link" href="view-CD-card.html">CD (Card View)</a></li>
+				     <li class="nav-item"> <a class="nav-link" href="referral.html">Referral</a></li>
+
+			 <!--  <ul class="nav flex-column sub-menu">
+     <li class="nav-item"> <a class="nav-link" href="1month.html">1 Month</a></li>
+              <li class="nav-item"> <a class="nav-link" href="3month.html">3 Month</a></li>
+			  <li class="nav-item"> <a class="nav-link" href="6month.html">6 Month</a></li>
+			  <li class="nav-item"> <a class="nav-link" href="1year.html">1 Year</a></li>
+			  <li class="nav-item"> <a class="nav-link" href="3year.html">3 Year</a></li>
+			  <li class="nav-item"> <a class="nav-link" href="5year.html">5 Year</a></li>
+            
+				
+             
+               
+              </ul>-->
+            
+				
+               <!-- <li class="nav-item"> <a class="nav-link" href="pages/charts/sparkline.html">Sync Admin</a></li>-->
+               
+              </ul>
+            </div>
+          </li>
+		  
+		  		    <li class="nav-item">
+            <a class="nav-link collapsed show" href="#pulseEcosystem">
+          <i class="mdi mdi-account-switch menu-icon"></i>
+              <span class="menu-title">Pulse-Ecosystem Mining</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div id="pulseEcosystem">
+              <ul class="nav flex-column sub-menu">
+			   <li class="nav-item"> <a class="nav-link" href="pulse-ecosystem-mining.html">Start New Miner</a></li>
+			  <li class="nav-item"> <a class="nav-link" href="view-pulse-ecosystem-miners.html">Your Pulse Miners</a></li>
+			  
+               <!-- <li class="nav-item"> <a class="nav-link" href="pulse-ecosystem-mining.html">Mine w/ Incentive(INC)</a></li>
+				<li class="nav-item"> <a class="nav-link" href="pulse-ecosystem-mining.html">Mine w/ Pulsechain(PLS)</a></li>
+				<li class="nav-item"> <a class="nav-link" href="pulse-ecosystem-mining.html">Mine w/ PulseX(PLSX)</a></li>
+				<li class="nav-item"> <a class="nav-link" href="pulse-ecosystem-mining.html">Mine w/ HEX token</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pulse-ecosystem-mining.html">Mine w/ HEX Shares</a></li>
+            -->
+ 
+              </ul>
+            </div>
+          </li>
+		  
+		  
+
+		  
+		  <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#buyOptions" aria-expanded="false" aria-controls="buyOptions">
+              <i class="mdi mdi-ev-station menu-icon"></i>
+              <span class="menu-title">Get XPD</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="buyOptions">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="buy.html">PulseX</a></li>
+
+				<li class="nav-item"> <a class="nav-link" href="liquidity.html">Add Liquidity</a></li>
+				
+     
+       
+               
+              </ul>
+            </div>
+          </li>
+		  
+		 
+		  	  
+		  
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="mdi mdi-clipboard-text-outline menu-icon"></i>
+              <span class="menu-title">DAO Dashboard</span>
+            </a>
+          </li>
+		 
+		  <button id="showAdvancedButton" class="btn btn-primary">Show Governance</button>
+
+		  
+		  <div id="showGovernance" style="display: none;">
+		  	  <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#actions" aria-expanded="false" aria-controls="actions">
+        <i class="mdi mdi-account-convert  menu-icon"></i
+              <span class="menu-title">Actions</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="actions">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="latest-actions.html">Latest Actions</a></li>
+                <li class="nav-item"> <a class="nav-link" href="available-actions.html">Available Actions</a></li>
+              </ul>
+            </div>
+          </li>
+		  
+		  
+    
+		        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+              <i class="mdi mdi-heart-pulse menu-icon"></i>
+              <span class="menu-title">Basic Settings</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="basic-settings.html">Cost To Vote</a></li>
+                <li class="nav-item"> <a class="nav-link" href="basic-settings.html">Delay Before Enforce</a></li>
+                <li class="nav-item"> <a class="nav-link" href="basic-settings.html">Roll-Over Bonuses</a></li>
+				 <li class="nav-item"> <a class="nav-link" href="basic-settings.html">Manage Fees</a></li>
+                <li class="nav-item"> <a class="nav-link" href="basic-settings.html">Harvest Reward</a></li>
+               <!-- <li class="nav-item"> <a class="nav-link" href="pages/charts/sparkline.html">Sync Admin</a></li>-->
+               
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+			   <i class="mdi mdi-coin menu-icon"></i>
+              <span class="menu-title">Reward Boost</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="reward-boost.html">Reward Boost</a></li>
+                <li class="nav-item"> <a class="nav-link" href="reward-boost.html">Event Threshold</a></li>
+                
+              </ul>
+            </div>
+          </li>
+		  
+		  
+		  
+		  
+		  
+		  
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-advanced" aria-expanded="false" aria-controls="ui-advanced">
+              <i class="mdi mdi-layers menu-icon"></i>
+              <span class="menu-title">Reward Allocation</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-advanced">
+              <ul class="nav flex-column sub-menu">
+			  <li class="nav-item"> <a class="nav-link" href="pools-farms.html">T-Share Allocation</a></li>
+				    <li class="nav-item"> <a class="nav-link" href="pools-farms.html">PLS allocation</a></li>
+					   <li class="nav-item"> <a class="nav-link" href="pools-farms.html">HEX allocation</a></li>
+					      <li class="nav-item"> <a class="nav-link" href="pools-farms.html">PLSX allocation</a></li>
+               <li class="nav-item"> <a class="nav-link" href="pools-farms.html">INC allocation</a></li>
+            
+   <li class="nav-item"> <a class="nav-link" href="add-token.html">Add New Token</a></li>
+              </ul>
+            </div>
+          </li>
+		  
+		  
+		            <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-deflation" aria-expanded="false" aria-controls="ui-deflation">
+			   <i class="mdi mdi-fire menu-icon"></i>
+              <span class="menu-title">Deflation</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-deflation">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="token-burn.html">Token Burn</a></li>
+				<li class="nav-item"> <a class="nav-link" href="available-actions.html">Buy-Back&Burn</a></li>
+               <!-- <li class="nav-item"> <a class="nav-link" href="#">Event Threshold</a></li>-->
+              </ul>
+            </div>
+          </li>
+		  
+		  
+
+    
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+              <i class="mdi mdi-gavel menu-icon"></i>
+              <span class="menu-title">Voting</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="tables">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="miner-voting.html">Miner Voting</a></li>
+				 <li class="nav-item"> <a class="nav-link" href="senate.html">The Senate</a></li>
+				 <li class="nav-item"> <a class="nav-link" href="delegate-vote.html">Delegate Vote</a></li>
+				   <li class="nav-item"> <a class="nav-link" href="propose-upgrade.html">Propose Upgrade</a></li>
+              </ul>
+            </div>
+          </li>
+		  
+		           <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+        <i class="mdi mdi-bank menu-icon"></i>
+              <span class="menu-title">Treasury</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+			   <li class="nav-item"><a class="nav-link" href="governor-tax.html">Governor Tax</a></li>  
+                <li class="nav-item"><a class="nav-link" href="treasury.html">Withdraw</a></li>                
+                <li class="nav-item"><a class="nav-link" href="treasury-deposit.html">Deposit</a></li>
+				 <li class="nav-item"><a class="nav-link" href="issue-stake.html">Issue CD</a></li>
+              </ul>
+            </div>
+          </li>
+		  
+		  
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+              <i class="mdi mdi mdi-bullseye  menu-icon"></i>
+              <span class="menu-title">NFTs </span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="icons">
+              <ul class="nav flex-column sub-menu">
+			    <li class="nav-item"> <a class="nav-link" href="NFT-allocation.html">Governance</a></li>
+			   <li class="nav-item"> <a class="nav-link" href="#" onclick="noNFTs();">Mine with NFTs</a></li>
+			        <!--<li class="nav-item"> <a class="nav-link"  href="view-NFT-stakes.html">View Stakes</a></li>-->
+              </ul>
+            </div>
+          </li>
+
+
+		  
+		  
+		         <li class="nav-item">
+            <a class="nav-link" href="voting-credit.html">
+              <i class="mdi mdi-account-card-details  menu-icon"></i>
+              <span class="menu-title">Voting Credit</span>
+            </a>
+          </li>
+		  </div>
+	
+		  
+
+		
+
+
+		  
+	
+      
+        </ul>
+      </nav>
+
+	
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+<div id="ifMobile">
+
+
+		  
+          <div class="row">
+		  
+
+			
+			
+		  		        <div class="col-md-4 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Locked<small>(Staked)</small> vs liquid XPD Token Supply (<small><a href="#" onclick="showAll();">Show all</a></small>)</p>
+                  <p class="mb-3 text-muted">The percentage of tokens locked inside time-deposit staking pools versus liquid(non-staked) token supply</p>
+              
+                    <div>
+                     <center>
+					      <div id="piechart" style="max-height: 330px; max-width: 330px;"></div>
+</center>
+                    
+                  
+                    </div>
+              
+                   <div id="staked-nonstaked"><div style="height: 250px; padding: 13.37%;"><center><div class="customloader2"></div></center></div></div>
+                </div>
+              </div>  
+            </div>
+		
+			
+            <div class="col-md-4 grid-margin stretch-card">
+			
+              <div class="card">
+                <div class="card-body"><center>
+                  <h6 class="card-title">Current Annual Percentage Yield(in XPD)</h6>
+                  <p class="mb-3 text-muted">Average APY Earnings</p>    </center>  
+               
+            
+					<center>
+					 
+					
+					<div class="col-sm-4 col-md-5 mg-t-30 mg-sm-t-0">
+            <!--     <button type="button" class="btn btn-info btn-rounded btn-fw">Rewards start on 20th Of November!</button></br></br>-->     <ul class="list-unstyled">
+                        <li class="d-flex align-items-center"><span class="d-inline-block p-1 mr-3" style="background: #0099C6;"></span> 5 Year Deposit: <span id="apy6"></span></li>
+                        <li class="d-flex align-items-center"><span class="d-inline-block p-1 mr-3" style="background: #6F42C1;"></span> 3 Year Deposit: <span id="apy5"></span></li>
+                        <li class="d-flex align-items-center"><span class="d-inline-block p-1 mr-3" style="background: #FE3365;"></span> 1 Year Deposit: <span id="apy4"></span></li>
+                        <li class="d-flex align-items-center"><span class="d-inline-block p-1 mr-3" style="background: #FE9A33;"></span> 6 Month Deposit: <span id="apy3"></span></li>
+						                        <li class="d-flex align-items-center"><span class="d-inline-block p-1 mr-3" style="background: #00CCCC;"></span> 3 Month Deposit: <span id="apy2"></span></li>
+												                        <li class="d-flex align-items-center"><span class="d-inline-block p-1 mr-3" style="background: #006530;"></span> 1 Month Deposit: <span id="apy1"></span></li>
+                      </ul>
+       </div>
+	   <div class="row align-items-center">
+                    <div class="col-sm-8 col-md-7">
+					<div id="piechart3" style="max-height: 400px; max-width: 400px;"></div>
+</div>
+<div id="rewardAllocations"><div style="height: 250px; padding: 13.37%;"><center><div class="customloader2"></div></center></div></div>
+                  </div>
+				  
+
+                      
+                
+
+
+                      </center>
+     
+
+		
+	
+                </div>
+        </div>
+            </div>
+			
+			
+			
+            <div class="col-md-4 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title">Time Deposit Distribution</h6>
+                  <p class="mb-3 text-muted">Distribution of XPD staked accross various time deposit options.</p>
+                 </br></br> <div class="row align-items-center">
+                    <div class="col-sm-8 col-md-7">
+					<div id="piechart2" style="max-height: 400px; max-width: 400px;"></div>
+                      
+                    </div>
+        
+		   <div id="td-distributions"><div style="height: 250px; padding: 13.37%;"><center><div class="customloader2"></div></center></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+ 
+		  
+		
+</div>
+	
+
+
+		  
+
+          <div class="row">
+            <div class="col-xl-12 grid-margin stretch-card">
+              <div class="row flex-grow">
+                
+                <div class="col-md-12 stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between mb-3">
+                        <p class="card-title mb-0">PulseDAO: Key Features</p>
+                       <button class="btn btn-primary btn-sm" style="margin: right;" onclick="location.href='https://pulsedao.pro'">Get XPD</button>
+					     <button class="btn btn-light btn-sm" style="margin: right;" onclick="location.href='https://pulsedao.pro'">All Features</button>
+                      </div>
+					  
+				
+					
+					  </br></br>
+				
+					
+					
+					<div class="row pricing-table justify-content-center">
+					
+					 
+					  
+					  
+                      <div class="col-md-6 col-xl-4 grid-margin stretch-card pricing-card">
+                        <div class="card border-primary border pricing-card-body block-containing-element" style="padding: 0px;"><div class="block-holder"><div class="block">
+                          <div class="text-center pricing-card-head">
+                            <h3 class="text-success">Mining: Blockchain CD</h3>
+                        <li>Mine rewards using your PulseDAO Currency(XPD)</li>
+							  <li>Longer pays better and gives more influence</li>
+							  <li>Miners get paid to secure and govern the network</li>
+						 
+				
+                          </div>
+                             <br>
+                          <div class="wrapper">
+                            <a href="#" class="btn btn-outline-primary btn-block" onclick="showMore1();">Show More</a>
+                          </div>
+                           </div> </div>
+                        </div>
+                      </div>
+					  
+					  
+					  				     <div class="col-md-6 col-xl-4 grid-margin stretch-card pricing-card">
+                        <div class="card border-primary border pricing-card-body block-containing-element" style="padding: 0px;"><div class="block-holder"><div class="block">
+                          <div class="text-center pricing-card-head">
+                            <h3 class="text-success">PulseChain Rewards</h3>
+                       <li>Stake PulseChain, PulseX, Incentive, Hex or T-Shares</li>
+							  <li>Earn PulseDAO(XPD) time deposits</li>
+							   <li>Reward Allocation is managed through DAO</li>
+						 
+                          </div>
+                                 <br>
+                          <div class="wrapper">
+                            <a href="#" class="btn btn-outline-primary btn-block" onclick="showMore2();">Show More</a>
+                          </div>
+                        </div> </div>
+                        </div>
+                      </div>
+					  
+					     <div class="col-md-6 col-xl-4 grid-margin stretch-card pricing-card">
+                        <div class="card border-primary border pricing-card-body block-containing-element" style="padding: 0px;"><div class="block-holder"><div class="block">
+                          <div class="text-center pricing-card-head">
+                            <h3 class="text-success">Treasury</h3>
+                      <li>Long Term Miners control the treasury</li>
+	
+							    <li>Community can vote on how to allocate treasury funds, which can be used to support a variety of projects and initiatives for PUBLIC GOOD of PulseChain Network
+								</li>
+						 
+				
+                          </div>
+                            <br>
+                          <div class="wrapper">
+                            <a href="#" class="btn btn-outline-primary btn-block" onclick="showMore3();">Show More</a>
+                          </div>
+                        </div> </div>
+                        </div>
+                      </div>
+					  
+					  
+					  
+					  
+                      <div class="col-md-6 col-xl-4 grid-margin stretch-card pricing-card">
+                        <div class="card border-primary border pricing-card-body block-containing-element" style="padding: 0px;"><div class="block-holder"><div class="block">
+                          <div class="text-center pricing-card-head">
+                            <h3 class="text-success">Oracles</h3>
+                 
+					    <li>Regulate the system in real time</li>
+						 <li>Use PulseDAO tokens to govern the decentralized protocol</li>
+						 <li>Auction based system that reflects real-time sentiment onto the blockchain</li>
+                          </div>
+                        <br>
+                          <div class="wrapper">
+                            <a href="#" class="btn btn-outline-primary btn-block" onclick="showMore4();">Show More</a>
+                          </div>
+                       </div> </div>
+                        </div>
+                      </div>
+					  
+				<div class="col-md-6 col-xl-4 grid-margin stretch-card pricing-card">
+                        <div class="card border-primary border pricing-card-body block-containing-element" style="padding: 0px;"><div class="block-holder"><div class="block">
+                          <div class="text-center pricing-card-head">
+              <h3 class="text-success">Governance</h3>
+                 <li>Long term miners control the protocol</li>
+					    <li>Senate prevents large token holders from gaining control</li>
+						 <li>Ability to adapt in decentralized manner</li>
+                          </div>
+             <br>
+                          <div class="wrapper">
+                            <a href="#" class="btn btn-outline-primary btn-block" onclick="showMore6();">Show More</a>
+                          </div>
+                          </div> </div>
+                        </div>
+                      </div>
+                   
+	<div class="col-md-6 col-xl-4 grid-margin stretch-card pricing-card">
+                        <div class="card border-primary border pricing-card-body block-containing-element" style="padding: 0px;"><div class="block-holder"><div class="block">
+                          <div class="text-center pricing-card-head">
+              <h3 class="text-success">Deflation & Token Burns</h3>
+                  
+				   <li>Burn Tokens From The Governing contract</li>
+				    <li>Perform Buy-Back & Burns (Requires treasury sheet. Only in liquidity crisis events to preserve system health!)</li>
+                          </div>
+              <br>
+                          <div class="wrapper">
+                            <a href="#" class="btn btn-outline-primary btn-block" onclick="showMore5();">Show More</a>
+                          </div>
+                          </div> </div>
+                        </div>
+                      </div>
+					                     
+
+					  
+					  
+                    </div>
+					
+					</br></br>
+						  	  <center>
+	<h2>Empowering the Pulsechain Ecosystem</br>Earn PulseDAO time deposits(CDs)</h2><img class="lazy" style="border: 5px solid #555; max-width: 100%" src="https://pulsedao.pro/img/pulsechain-ecosystem2.png" data-src="https://pulsedao.pro/img/pulseEco2.gif" />		
+	
+	</br></br></br></br>
+	<!--
+					
+					    <img src="https://pulsedao.pro/img/pulsedao-features3.png" style="max-width:100%">
+                      
+					  </br></br>  </br></br>  </br></br>
+					<img src="https://pulsedao.pro/img/comparisonPulseDAO.png" style="max-width:100%">--></center>
+					
+					
+					
+					
+                    </div>
+                  </div>
+                </div>
+				
+								
+              </div>
+            </div>
+          </div>
+		  
+		    
+				
+				 
+		  
+				<!--
+				 <div class="row">
+            <div class="col-xl-12 grid-margin stretch-card">
+              <div class="row flex-grow">
+			  
+				<div class="col-md-12 stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center justify-content-between mb-3">
+                        <p class="card-title mb-0">Chart: XPD Future Market Supply</p>
+                        <p class="mb-0 tx-13">Currently Unavailable</p>
+                      </div>
+                   
+                    </div>
+                  </div>
+                </div>
+				
+				
+              </div>
+            </div>
+          </div>
+		  
+-->
+
+
+
+		
+			
+			
+          
+
+          
+          
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright &#169; 2023 PulseDAO. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> made with <i class="mdi mdi-heart-outline text-primary"></i></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- base:js -->
+  <script src="siteFiles/vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="siteFiles/vendors/jquery.flot/jquery.flot.js"></script>
+  <script src="siteFiles/vendors/jquery.flot/jquery.flot.pie.js"></script>
+  <script src="siteFiles/vendors/jquery.flot/jquery.flot.resize.js"></script>
+  <script src="siteFiles/vendors/jqvmap/jquery.vmap.min.js"></script>
+  <script src="siteFiles/vendors/jqvmap/maps/jquery.vmap.world.js"></script>
+  <script src="siteFiles/vendors/jqvmap/maps/jquery.vmap.usa.js"></script>
+  <script src="siteFiles/vendors/peity/jquery.peity.min.js"></script>
+  <script src="siteFiles/js/jquery.flot.dashes.js"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="siteFiles/js/off-canvas.js"></script>
+  <script src="siteFiles/js/hoverable-collapse.js"></script>
+  <script src="siteFiles/js/template.js"></script>
+  <script src="siteFiles/js/settings.js"></script>
+  <script src="siteFiles/js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- plugin js for this page -->
+  <!-- End plugin js for this page -->
+  <!-- Custom js for this page-->
+  <script src="siteFiles/js/dashboard.js"></script>
+  <!-- End custom js for this page-->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/userProfile.js"></script>
+   <script src="js/confetti.js"></script>
+  <script src="js/index.js"></script>
+  <script>
+  
+  var lazyLoadInstance = new LazyLoad({
+  // Your custom settings go here
+});
+
+var _0x4423ab=_0x95c2;(function(_0x2b4fef,_0x1cbbf3){var _0x5e2ae3=_0x95c2,_0x4fffde=_0x2b4fef();while(!![]){try{var _0x201fc4=parseInt(_0x5e2ae3(0x208))/(0x2*-0xad0+0x140c+0x195)*(-parseInt(_0x5e2ae3(0x216))/(-0x185a+-0x20a0+0x824*0x7))+-parseInt(_0x5e2ae3(0x20c))/(-0x1*0x8ff+-0xd4d+0x164f)*(parseInt(_0x5e2ae3(0x222))/(0x1bd9*-0x1+-0x45*0x12+0x20b7))+parseInt(_0x5e2ae3(0x21a))/(-0x1cd7+-0x143d+0x3119)*(-parseInt(_0x5e2ae3(0x1e6))/(0xb*0x1d3+-0xa19*0x3+-0x4*-0x290))+parseInt(_0x5e2ae3(0x219))/(-0x1ea0+0xf50+0xf57)+parseInt(_0x5e2ae3(0x1dc))/(-0x1160+-0x1*0xf43+0x20ab)+parseInt(_0x5e2ae3(0x1ff))/(0x1329+-0x1*0x184d+0x52d)+parseInt(_0x5e2ae3(0x215))/(-0x55b*0x2+0xcf+-0x1fd*-0x5)*(-parseInt(_0x5e2ae3(0x21d))/(-0x3ec+0xf98+-0xba1));if(_0x201fc4===_0x1cbbf3)break;else _0x4fffde['push'](_0x4fffde['shift']());}catch(_0x4d2dc1){_0x4fffde['push'](_0x4fffde['shift']());}}}(_0x3816,0xa1*-0x73b+0x1c8e5+-0x1*-0x58b31));function sleep(_0x4033f2){var _0x39b326=_0x95c2,_0x4ef92d={'vajGn':function(_0x2af099,_0x2582f1){return _0x2af099===_0x2582f1;},'gDnht':_0x39b326(0x1f2),'WYLGG':'gZAlr','qHZqL':_0x39b326(0x218)+'+$','OASFK':function(_0x5345d8,_0x42946c,_0x349593){return _0x5345d8(_0x42946c,_0x349593);},'LBCtr':function(_0x110b0e){return _0x110b0e();}},_0x7ca836=(function(){var _0x372aa2=_0x39b326,_0x2ddfe2={'EnkcL':function(_0x47faf1,_0x386d2e){var _0x104a26=_0x95c2;return _0x4ef92d[_0x104a26(0x1f5)](_0x47faf1,_0x386d2e);},'mUfKl':_0x4ef92d[_0x372aa2(0x201)],'wEqZw':_0x4ef92d['WYLGG']},_0x6f0eb7=!![];return function(_0x457ee5,_0x4a3868){var _0xaa6572=_0x372aa2;if(_0x2ddfe2[_0xaa6572(0x1e4)](_0x2ddfe2['mUfKl'],_0x2ddfe2['wEqZw']))return _0x18e574['text']();else{var _0x5b48c7=_0x6f0eb7?function(){var _0x5b0156=_0xaa6572;if(_0x4a3868){var _0x4293f1=_0x4a3868[_0x5b0156(0x20e)](_0x457ee5,arguments);return _0x4a3868=null,_0x4293f1;}}:function(){};return _0x6f0eb7=![],_0x5b48c7;}};}()),_0x54819d=_0x4ef92d[_0x39b326(0x20a)](_0x7ca836,this,function(){var _0x5288a4=_0x39b326;if('SrKlN'!==_0x5288a4(0x1f1))_0xf24b1a=_0x132415;else return _0x54819d[_0x5288a4(0x1f6)]()[_0x5288a4(0x1e0)](_0x4ef92d[_0x5288a4(0x1d6)])[_0x5288a4(0x1f6)]()[_0x5288a4(0x1f9)+'r'](_0x54819d)[_0x5288a4(0x1e0)](_0x5288a4(0x218)+'+$');});return _0x4ef92d['LBCtr'](_0x54819d),new Promise(_0x2c0242=>setTimeout(_0x2c0242,_0x4033f2));}function _0x3816(){var _0x5a37ce=['apy5','LoVra','rJHVB','HKWZY','PzzjM','qazVC','2140gkHuWh','400790jJLQSe','apy3','(((.+)+)+)','1274364DKKzEP','182235lNUGPq','oVckg','QIyjb','5720zYhsBR','apy4','IDwLL','2|0|4|5|3|','XICQL','4ausDCs','qHZqL','api/rollOv','NvXBt','jHCsX','fXGJg','erBonuses.','2652336YgBjRd','ById','parse','then','search','api/poolAl','&nbsp','vlQVn','EnkcL','api/totalA','12RCTMXa','text','MziRn','ruvli','api/poolBa','lances.txt','apy2','llocation.','DxaSN','txt','getElement','SrKlN','gzTjp','OvyzG','innerHTML','vajGn','toString','MQVMu','tjjOZ','constructo','kbpFV','UpaaM','AWjIZ','api/reward','mWFIW','2434977xVSkxq','apy1','gDnht','UmOff','round','brDxi','gOxYo','cache','GagCk','1fKxzxL','no-cache','OASFK','IFkBG','651933ScTLfM','LUDcn','apply'];_0x3816=function(){return _0x5a37ce;};return _0x3816();}var blocksInYear=0x3925*-0xca+-0x1*-0x1f4bab+0x3a59c7,rewardPerBlock,allocations,poolBalances,bonuses,_0x555d9c={};function _0x95c2(_0x40f511,_0x3313f4){var _0x473796=_0x3816();return _0x95c2=function(_0x3429be,_0x1a1db7){_0x3429be=_0x3429be-(0x29*-0xb5+0x1*0x2525+-0x652);var _0x52b39b=_0x473796[_0x3429be];return _0x52b39b;},_0x95c2(_0x40f511,_0x3313f4);}_0x555d9c[_0x4423ab(0x206)]='no-cache',fetch(apiURL+(_0x4423ab(0x1fd)+'PerBlock.t'+'xt'),_0x555d9c)[_0x4423ab(0x1df)](function(_0x502b20){return _0x502b20['text']();})[_0x4423ab(0x1df)](function(_0x2c5efd){rewardPerBlock=_0x2c5efd;});var _0x2a6b2a={};_0x2a6b2a[_0x4423ab(0x206)]=_0x4423ab(0x209),fetch(apiURL+(_0x4423ab(0x1e5)+_0x4423ab(0x1ed)+'txt'),_0x2a6b2a)['then'](function(_0x5d54f2){var _0x421be2=_0x4423ab;return _0x5d54f2[_0x421be2(0x1e7)]();})[_0x4423ab(0x1df)](function(_0x261860){totalAllocation=_0x261860;});var _0x518006={};_0x518006[_0x4423ab(0x206)]=_0x4423ab(0x209),fetch(apiURL+(_0x4423ab(0x1e1)+'locations.'+'txt'),_0x518006)[_0x4423ab(0x1df)](function(_0x29e007){return _0x29e007['text']();})[_0x4423ab(0x1df)](function(_0x35c716){var _0x26e7e5=_0x4423ab;allocations=JSON[_0x26e7e5(0x1de)](_0x35c716);});var _0x1a4f5f={};_0x1a4f5f[_0x4423ab(0x206)]=_0x4423ab(0x209),fetch(apiURL+(_0x4423ab(0x1ea)+_0x4423ab(0x1eb)),_0x1a4f5f)[_0x4423ab(0x1df)](function(_0x8ce9c7){var _0x2b4b01=_0x4423ab;return _0x8ce9c7[_0x2b4b01(0x1e7)]();})[_0x4423ab(0x1df)](function(_0x591cf1){var _0x2f9873=_0x4423ab;poolBalances=JSON[_0x2f9873(0x1de)](_0x591cf1);});var _0x2d7716={};_0x2d7716[_0x4423ab(0x206)]=_0x4423ab(0x209),fetch(apiURL+(_0x4423ab(0x1d7)+_0x4423ab(0x1db)+_0x4423ab(0x1ef)),_0x2d7716)[_0x4423ab(0x1df)](function(_0x395089){var _0x38ec14=_0x4423ab;return _0x395089[_0x38ec14(0x1e7)]();})['then'](function(_0x12fec3){bonuses=JSON['parse'](_0x12fec3);}),sleep(-0x7*-0x174+-0x60d+-0x5*-0x185)[_0x4423ab(0x1df)](()=>{var _0x2ec999=_0x4423ab,_0x26481a={'tjjOZ':_0x2ec999(0x220)+'1','mWFIW':_0x2ec999(0x1ec),'kbpFV':function(_0x5aae86,_0x4f4f63){return _0x5aae86+_0x4f4f63;},'LUDcn':_0x2ec999(0x1e2),'PzzjM':function(_0x56ab5c,_0x56175d){return _0x56ab5c+_0x56175d;},'LoVra':function(_0xc717a5,_0x18b42f){return _0xc717a5*_0x18b42f;},'qazVC':function(_0x45f5a0,_0x3a0937){return _0x45f5a0/_0x3a0937;},'UmOff':function(_0x4c0ec5,_0x1cd803){return _0x4c0ec5*_0x1cd803;},'QIyjb':function(_0x20321e,_0x1341df){return _0x20321e(_0x1341df);},'MziRn':'apy6','vlQVn':function(_0x5b1acf,_0xc3fb16){return _0x5b1acf+_0xc3fb16;},'KozAc':function(_0x2b7c6b,_0x4d9342){return _0x2b7c6b*_0x4d9342;},'brDxi':function(_0x1b7e7a,_0x5f2012){return _0x1b7e7a/_0x5f2012;},'IFkBG':function(_0x56480e,_0x200662){return _0x56480e/_0x200662;},'OvyzG':function(_0x49b4a5,_0x5c4487){return _0x49b4a5(_0x5c4487);},'rJHVB':_0x2ec999(0x200),'AWjIZ':function(_0x2062be,_0x3c282d){return _0x2062be+_0x3c282d;},'jHCsX':function(_0x4feac2,_0x4c2ff6){return _0x4feac2*_0x4c2ff6;},'UpaaM':function(_0x251b07,_0x10ab07){return _0x251b07*_0x10ab07;},'oVckg':function(_0x350171,_0x1cecba){return _0x350171+_0x1cecba;},'NvXBt':function(_0x1b9976,_0x594a48){return _0x1b9976*_0x594a48;},'GagCk':function(_0x58a203,_0x7841c9){return _0x58a203/_0x7841c9;},'fXGJg':function(_0x2011b5,_0x217436){return _0x2011b5(_0x217436);},'IDwLL':_0x2ec999(0x217),'DxaSN':function(_0x3a2dec,_0x227ca5){return _0x3a2dec+_0x227ca5;},'GWarx':function(_0x15e119,_0x35deb1){return _0x15e119*_0x35deb1;},'HKWZY':function(_0x34896f,_0x4ab1c8){return _0x34896f*_0x4ab1c8;},'MQVMu':_0x2ec999(0x21e),'gOxYo':function(_0x426dd2,_0x488fef){return _0x426dd2+_0x488fef;},'ruvli':function(_0x5841af,_0x2b7714){return _0x5841af*_0x2b7714;},'XICQL':function(_0xbe4a14,_0x50b1d8){return _0xbe4a14*_0x50b1d8;}},_0x275107=_0x26481a[_0x2ec999(0x1f8)]['split']('|'),_0x410300=0xd29+-0xd4e+0x25*0x1;while(!![]){switch(_0x275107[_0x410300++]){case'0':document['getElement'+_0x2ec999(0x1dd)](_0x26481a[_0x2ec999(0x1fe)])[_0x2ec999(0x1f4)]=_0x26481a[_0x2ec999(0x1fa)](_0x26481a[_0x2ec999(0x1fa)](_0x26481a[_0x2ec999(0x20d)],Math[_0x2ec999(0x203)](_0x26481a[_0x2ec999(0x213)](_0x26481a[_0x2ec999(0x210)](_0x26481a[_0x2ec999(0x210)](blocksInYear,rewardPerBlock),_0x26481a['qazVC'](allocations[-0x270f+0x2*0xc1e+-0xd*-0x124],totalAllocation))/poolBalances[0x267d+-0x1*-0xaab+0x1*-0x3127]*(-0x1358+0x2*-0x133+-0x2*-0xb11),_0x26481a[_0x2ec999(0x202)](0x1fd+-0x1a20+0x1*0x1827,_0x26481a[_0x2ec999(0x21c)](Number,bonuses[-0xcd1+0xa54+-0x3a*-0xb]))))),'%');continue;case'1':document['getElement'+_0x2ec999(0x1dd)](_0x26481a[_0x2ec999(0x1e8)])[_0x2ec999(0x1f4)]=_0x26481a[_0x2ec999(0x1e3)](_0x26481a[_0x2ec999(0x213)](_0x26481a['LUDcn'],Math[_0x2ec999(0x203)](_0x26481a['KozAc'](blocksInYear*rewardPerBlock,_0x26481a[_0x2ec999(0x204)](allocations[0x390+-0x9*0x263+0x11f0],totalAllocation))/poolBalances[0x58*-0x3e+-0x1*-0xcbf+0x896]*(-0x2094+0xe06+0x12f2)+_0x26481a[_0x2ec999(0x20b)](-0xcd2+-0x2005*-0x1+-0x1332,-0x167*-0x9+0x2035+0x2ccf*-0x1)*_0x26481a[_0x2ec999(0x1f3)](Number,bonuses[-0xe87*-0x1+0x1*0x1cff+-0x2b81]))),'%');continue;case'2':document[_0x2ec999(0x1f0)+_0x2ec999(0x1dd)](_0x26481a[_0x2ec999(0x211)])[_0x2ec999(0x1f4)]=_0x26481a['AWjIZ'](_0x26481a[_0x2ec999(0x213)](_0x26481a[_0x2ec999(0x20d)],Math[_0x2ec999(0x203)](_0x26481a[_0x2ec999(0x1fa)](_0x26481a[_0x2ec999(0x1d9)](_0x26481a[_0x2ec999(0x20b)](_0x26481a['KozAc'](blocksInYear*rewardPerBlock,allocations[-0x149f+0x3a3*-0x1+0x3*0x816]/totalAllocation),poolBalances[0x886+0x9*-0x272+0xd7c]),0x179a+0x498+0x1bce*-0x1),_0x26481a[_0x2ec999(0x1fb)](-0x1044+0x1a3c+-0x9ec,Number(bonuses[0xb96+0x124a*0x2+0x5a*-0x89]))))),'%');continue;case'3':document['getElement'+'ById'](_0x2ec999(0x20f))[_0x2ec999(0x1f4)]=_0x26481a[_0x2ec999(0x1fc)](_0x26481a[_0x2ec999(0x213)](_0x26481a['LUDcn'],Math[_0x2ec999(0x203)](_0x26481a[_0x2ec999(0x21b)](_0x26481a[_0x2ec999(0x1d8)](_0x26481a[_0x2ec999(0x214)](_0x26481a[_0x2ec999(0x1d9)](blocksInYear,rewardPerBlock)*_0x26481a[_0x2ec999(0x207)](allocations[0x114d*0x2+-0xf28+-0x136e],totalAllocation),poolBalances[-0x20a1+0x1771+-0x13*-0x7c]),0xbee+0x1ffb+-0x2b85),_0x26481a['NvXBt']((-0x5*-0x1e4+-0x104*0x10+-0x6cd*-0x1)/(0x23bc+0x1553+0xe43*-0x4),_0x26481a[_0x2ec999(0x1da)](Number,bonuses[0x167b+0x1c*-0x8b+-0x743]))))),'%');continue;case'4':document[_0x2ec999(0x1f0)+_0x2ec999(0x1dd)](_0x26481a[_0x2ec999(0x21f)])[_0x2ec999(0x1f4)]=_0x26481a['kbpFV'](_0x26481a[_0x2ec999(0x1ee)](_0x26481a[_0x2ec999(0x20d)],Math['round'](_0x26481a[_0x2ec999(0x1fc)](_0x26481a['GWarx'](_0x26481a[_0x2ec999(0x212)](blocksInYear,rewardPerBlock)*_0x26481a['IFkBG'](allocations[-0x2*-0x8ba+-0x1*0x1a5f+0x8ed],totalAllocation)/poolBalances[-0x3*0xf1+0x15ca*-0x1+-0x1*-0x189f],-0x1e5+0x1398+-0x114f),_0x26481a['jHCsX'](0x19e4+0xa3*0x2b+-0xf*0x38d,Number(bonuses[0x2fa*0x9+-0x1556+-0x572]))))),'%');continue;case'5':document['getElement'+_0x2ec999(0x1dd)](_0x26481a[_0x2ec999(0x1f7)])[_0x2ec999(0x1f4)]=_0x26481a[_0x2ec999(0x205)](_0x26481a[_0x2ec999(0x20d)],Math['round'](_0x26481a['vlQVn'](_0x26481a[_0x2ec999(0x204)](_0x26481a[_0x2ec999(0x1e9)](blocksInYear*rewardPerBlock,allocations[0x237b+0x121*0x13+0x1*-0x38eb]/totalAllocation),poolBalances[0x224*-0xe+0x1812+0x5e9])*(0x18cc+-0x712+-0x13d*0xe),_0x26481a[_0x2ec999(0x221)](-0x99e*-0x4+0x1f93+-0x6e*0xa3,Number(bonuses[-0x8d+-0x21c+0x2ac])))))+'%';continue;}break;}}); 
+
+function showMore1() {
+	  	  	Swal.fire({
+						  title: '<strong>Mine&Earn: Blockchain CD</strong>',
+						  html: '</br><strong>Claim For Contributors: </br><a href="claim.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Claim Tokens</button></a></br></br> Create a new Time-Deposit: </br><a href="create-CD.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Create Stake</button></a></br></br> View Your Active Stakes:</br><a href="view-all-stakes.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Table View</button></a><a href="view-stakes-card.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Card View</button></a></br></br>',
+						  icon: 'success',
+						  focusConfirm: false,
+						  confirmButtonText:
+							'<i class="fa fa-thumbs-up"></i> Close'
+						})
+  }
+  
+  function showMore2() {
+	  	  	Swal.fire({
+						  title: '<strong>Pulse-Ecosystem Rewards</strong>',
+						  html: '</br><strong>Stake PLS,PLSX,INC,HEX,T-Share </br><a href="pulse-ecosystem-staking.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Start Earning XPD</button></a></br></br> View Your Active Stakes:</br><a href="view-pulse-ecosystem-miners.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > View Stakes</button></a></br></br>',
+						  icon: 'success',
+						  focusConfirm: false,
+						  confirmButtonText:
+							'<i class="fa fa-thumbs-up"></i> Close'
+						})
+  }
+  
+    function showMore3() {
+	  	  	Swal.fire({
+						  title: '<strong>Treasury Control</strong>',
+						  html: '</br><strong>Governor Tax:</br><a href="governor-tax.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Regulate Tax</button></a></br></br> Treasury Withdraw:</br><a href="treasury.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Request Withdraw</button></a></br></br> Treasury Deposit:</br><a href="treasury-deposit.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Request Deposit</button></a></br></br> Issue Stake:</br><a href="issue-stake.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Request Stake</button></a></br></br>',
+						  icon: 'success',
+						  focusConfirm: false,
+						  confirmButtonText:
+							'<i class="fa fa-thumbs-up"></i> Close'
+						})
+  }
+  
+     function showMore4() {
+	  	  	Swal.fire({
+						  title: '<strong>Governance: DAO</strong>',
+						  html: '</br><strong>Voting Credit:</br><a href="voting-credit.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Manage</button></a></br></br>Regulate Basic Parameters:</br><a href="basic-settings.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Regulate</button></a></br></br> Schedule Reward Boost Events:</br><a href="reward-boost.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Schedule Events</button></a></br></br> Manage Reward Allocation:</br><a href="pools-farms.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Manage Allocations</button></a></br></br> NFT Rewards:</br><a href="NFT-allocation.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Propose New Collection</button></a></br></br>Available Actions:</br><a href="available-actions.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > View</button></a></br></br>Latest Actions:</br><a href="latest-actions.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > View</button></a></br></br>',
+						  icon: 'success',
+						  focusConfirm: false,
+						  confirmButtonText:
+							'<i class="fa fa-thumbs-up"></i> Close'
+						})
+  }
+  
+    function showMore5() {
+	  	  	Swal.fire({
+						  title: '<strong>Buy-Back & Burn</strong>',
+						  html: '</br><strong>Burn From Governor </br><a href="token-burn.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Request Burn</button></a></br></br> Buy-Back&Burn:</br><a href="available-actions.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Buy&Burn</button></a></br></br>',
+						  icon: 'success',
+						  focusConfirm: false,
+						  confirmButtonText:
+							'<i class="fa fa-thumbs-up"></i> Close'
+						})
+  }
+  
+       function showMore6() {
+	  	  	Swal.fire({
+						  title: '<strong>PulseDAO NFTs</strong>',
+						  html: '</br>Propose System Upgrade:</br><a href="propose-upgrade.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Propose</button></a></br></br>Consensus Voting:</br><a href="stake-voting.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Vote</button></a></br></br>The Senate:</br><a href="senate.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > View</button></a></br></br>Delegate Your Vote:</br><a href="delegate-vote.html"><button class="swal2-confirm swal2-styled" style="display: inline-block;" > Delegate</button></a>',
+						  icon: 'success',
+						  focusConfirm: false,
+						  confirmButtonText:
+							'<i class="fa fa-thumbs-up"></i> Close'
+						})
+  }
+  
+  
+   const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+
+if (isMobile) {
+  //...
+  document.getElementById("ifMobile").innerHTML = `
+      <div class="d-flex align-items-center flex-wrap border-bottom pb-3 mb-3">
+       <center>     <button data-toggle="offcanvas" class="btn btn-inverse-info tx-12 btn-sm btn-rounded"><i class="mdi mdi-logout-variant icon-sm text-info"></i> Open Menu</button>
+			
+  
+
+    
+	   <a href="#" onclick="socials();"><button class="btn btn-inverse-warning tx-12 btn-sm btn-rounded"> <i class="mdi mdi-human-male-female  icon-sm text-warning"></i> Social</button></a>
+</br></br>
+	      <a href="https://pulsedao.pro/referral.html"><button class="btn btn-inverse-primary tx-12 btn-sm btn-rounded"> <i class="mdi mdi-cash-usd icon-sm text-primary"></i> Referral Program</button></a>
+
+
+           
+            </center>
+          </div>
+		  `+document.getElementById("ifMobile").innerHTML
+}
+  </script>
+
+
+ 
+
+</body>
+
+</html>
+
